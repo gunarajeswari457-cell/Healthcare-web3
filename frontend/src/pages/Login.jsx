@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { HeartPulse } from 'lucide-react';
 import { InputField } from '../components/ui/InputField';
@@ -12,6 +12,14 @@ export function Login() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    if (token && role) {
+      navigate(role === 'doctor' ? '/doctor' : '/dashboard');
+    }
+  }, [navigate]);
 
   const validate = () => {
     const newErrors = {};
@@ -29,7 +37,8 @@ export function Login() {
     setIsLoading(true);
     setApiError('');
     try {
-      const response = await authAPI.login(formData);
+      const loginData = { ...formData, email: formData.email.toLowerCase() };
+      const response = await authAPI.login(loginData);
       localStorage.setItem('token', response.token);
       localStorage.setItem('role', response.user.role);
       localStorage.setItem('email', response.user.email);

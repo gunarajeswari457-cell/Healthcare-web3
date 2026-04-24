@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { HeartPulse } from 'lucide-react';
 import { InputField } from '../components/ui/InputField';
@@ -12,6 +12,14 @@ export function Register() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [apiError, setApiError] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    if (token && role) {
+      navigate(role === 'doctor' ? '/doctor' : '/dashboard');
+    }
+  }, [navigate]);
 
   const validate = () => {
     const newErrors = {};
@@ -32,7 +40,8 @@ export function Register() {
     setIsLoading(true);
     setApiError('');
     try {
-      await authAPI.register(formData);
+      const registerData = { ...formData, email: formData.email.toLowerCase() };
+      await authAPI.register(registerData);
       navigate('/login');
     } catch (err) {
       setApiError(err.response?.data?.message || 'Registration failed');

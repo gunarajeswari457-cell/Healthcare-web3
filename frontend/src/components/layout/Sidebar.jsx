@@ -55,7 +55,12 @@ export function Sidebar({ role }) {
       <div className="border-t border-slate-200 p-4">
         <NavLink
           to="/login"
-          onClick={() => localStorage.removeItem('token')}
+          onClick={() => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('role');
+            localStorage.removeItem('email');
+            localStorage.removeItem('name');
+          }}
           className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-red-50 hover:text-red-600"
         >
           <LogOut size={18} className="text-slate-400 group-hover:text-red-600" />

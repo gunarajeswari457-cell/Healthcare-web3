@@ -8,11 +8,12 @@ export function DashboardLayout() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Mock authentication check
+    // Authentication check
+    const token = localStorage.getItem('token');
     const storedRole = localStorage.getItem('role');
     const storedName = localStorage.getItem('name');
     
-    if (!storedRole) {
+    if (!token || !storedRole) {
       navigate('/login');
     } else {
       setUser({ role: storedRole, name: storedName || 'John Doe' });
