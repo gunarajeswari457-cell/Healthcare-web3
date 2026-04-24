@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from '../../../components/ui/Card';
-import { Button } from '../../../components/ui/Button';
-import { InputField } from '../../../components/ui/InputField';
+import { Card, CardContent } from '../../components/ui/Card';
+import { Button } from '../../components/ui/Button';
+import { InputField } from '../../components/ui/InputField';
 
 export function CognitiveTest() {
   const [stage, setStage] = useState('start'); 
