@@ -6,6 +6,10 @@ import { PatientDashboard } from './pages/PatientDashboard';
 import { DoctorPanel } from './pages/DoctorPanel';
 import { Tests } from './pages/Tests';
 import { Settings } from './pages/Settings';
+import { ReactionTest } from './pages/tests/ReactionTest';
+import { TremorTest } from './pages/tests/TremorTest';
+import { CognitiveTest } from './pages/tests/CognitiveTest';
+import { VisionTest } from './pages/tests/VisionTest';
 
 function App() {
   return (
@@ -17,6 +21,10 @@ function App() {
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<PatientDashboard />} />
           <Route path="/dashboard/tests" element={<Tests />} />
+          <Route path="/dashboard/tests/reaction" element={<ReactionTest />} />
+          <Route path="/dashboard/tests/tremor" element={<TremorTest />} />
+          <Route path="/dashboard/tests/cognitive" element={<CognitiveTest />} />
+          <Route path="/dashboard/tests/vision" element={<VisionTest />} />
           <Route path="/dashboard/settings" element={<Settings />} />
           
           <Route path="/doctor" element={<DoctorPanel />} />

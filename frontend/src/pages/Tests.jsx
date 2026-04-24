@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PlayCircle, Activity, Brain, Eye } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 
 export function Tests() {
+  const navigate = useNavigate();
+
   const availableTests = [
     {
       id: 'reaction',
@@ -62,7 +65,7 @@ export function Tests() {
                 </div>
               </div>
               <div className="mt-6 flex justify-end">
-                <Button variant="primary">Start Test</Button>
+                <Button variant="primary" onClick={() => navigate(`/dashboard/tests/${test.id}`)}>Start Test</Button>
               </div>
             </CardContent>
           </Card>
