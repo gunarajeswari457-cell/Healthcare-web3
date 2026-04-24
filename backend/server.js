@@ -10,6 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 // In-memory Database for Demo Purposes
+app.get('/', (req, res) => {
+  res.send('Neuro Health Monitoring API is running normally!');
+});
+
 const users = [];
 const patientTests = {
   'patient@example.com': [
